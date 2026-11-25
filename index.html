@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia de ligação Fideliz</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* VOICE work: material de estudo para a vendedora, claro e acolhedor
+   IDEA o roteiro como uma linha de percurso da ligação, estação por estação
+   PICTURE mapa da ligação em cinco paradas até o fechamento, clicável, com a meta do dia
+   COLOUR creme Fideliz, azul-marinho dominante, azul vivo para as falas, amarelo suave para alertas
+   TYPE Nunito em quatro tamanhos
+   LAYOUT faixa azul com título e mapa; navegação fixa; partes em cartões numerados; no celular tudo empilha */
+:root{color-scheme:light dark;--bg:light-dark(#FDF8F1,#0f1530);--ink:light-dark(#172259,#EEF0FB);--soft:light-dark(#4E5578,#B9C0E0);--card:light-dark(#FFFDF9,#18204a);--line:light-dark(#ECE4D6,#2a3366);--navy:#0C3181;--navy2:#2A3496;--fala:light-dark(#E8EAFB,#243072);--falaInk:light-dark(#172259,#F3F4FF);--falaBar:#3B44C0;--alert:light-dark(#FFF4D6,#3a3218);--alertInk:light-dark(#5b4300,#f3dfa6);--ok:light-dark(#1f7a4d,#6fd3a1)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 'Nunito',Arial,sans-serif;overflow-x:clip}
+.band{padding-block:clamp(28px,4vw,56px);padding-inline:max(5vw,16px)}
+.wrap{max-width:1040px;margin:0 auto}
+.hero{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#FDF8F1}
+.brand{font-weight:800;font-size:17px;color:#C9D2F0}
+h1{font-size:clamp(32px,5vw,48px);line-height:1.05;letter-spacing:-.02em;margin:10px 0 12px;text-wrap:balance}
+.hero p.lead{font-size:18px;color:#DCE2F7;max-width:62ch;margin:0}
+.route{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin-top:34px;position:relative}
+.route::before{content:"";position:absolute;left:8%;right:8%;top:27px;height:4px;background:#8FA3F0;border-radius:2px}
+.stop{position:relative;text-align:center;color:#FDF8F1;text-decoration:none;padding:0 4px}
+.stop .dot{width:58px;height:58px;margin:0 auto 10px;border-radius:50%;background:#FDF8F1;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:20px;box-shadow:0 0 0 6px rgba(253,248,241,.18);transition:transform .2s}
+.stop:hover .dot,.stop:focus-visible .dot{transform:scale(1.08)}
+.stop.end .dot{background:#8FA3F0;color:#0C3181}
+.stop b{display:block;font-size:15px;line-height:1.25}
+.stop span{font-size:13px;color:#C9D2F0}
+.goal{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.goal div{background:rgba(253,248,241,.1);border:1px solid rgba(253,248,241,.25);border-radius:16px;padding:12px 18px}
+.goal strong{font-size:28px;display:block;line-height:1.1}
+.goal small{font-size:14px;color:#DCE2F7}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px max(5vw,16px);align-items:center}
+nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;padding:8px 14px;border-radius:999px}
+nav a:hover{background:var(--fala)}
+.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.legend{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-size:14px;font-weight:700;border-radius:999px;padding:6px 14px}
+.chip.f{background:var(--fala);color:var(--falaInk);border-left:5px solid var(--falaBar)}
+.chip.o{background:var(--card);border:1px solid var(--line)}
+.chip.a{background:var(--alert);color:var(--alertInk)}
+button{font:inherit;cursor:pointer}
+.toggle{min-height:44px;border:2px solid var(--falaBar);background:transparent;color:var(--ink);border-radius:999px;padding:8px 18px;font-weight:800}
+.toggle[aria-pressed=true]{background:var(--falaBar);color:#fff}
+.prog{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;color:var(--soft)}
+.bar{width:160px;height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+section h2{font-size:clamp(26px,3.4vw,34px);line-height:1.1;letter-spacing:-.02em;margin:0 0 6px}
+section>.wrap>p.intro{color:var(--soft);font-size:17px;max-width:68ch;margin:0 0 22px}
+.part{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px clamp(18px,3vw,30px);margin-bottom:18px}
+.ph{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.num{flex:none;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#FDF8F1;display:grid;place-items:center;font-weight:800}
+.ph h3{font-size:20px;margin:0;flex:1;line-height:1.25}
+.done{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--soft);cursor:pointer;flex:none}
+.done input{width:22px;height:22px;accent-color:var(--ok)}
+.part.ok{border-color:var(--ok)}
+.part p,.part li{max-width:70ch}
+.fala{position:relative;background:var(--fala);color:var(--falaInk);border-left:6px solid var(--falaBar);border-radius:6px 18px 18px 6px;padding:14px 18px 14px 18px;margin:14px 0;font-size:17px;font-weight:600;max-width:72ch}
+.fala::before{content:"Diga";display:block;font-size:13px;font-weight:800;color:light-dark(#3B44C0,#AEB6FF);margin-bottom:4px}
+.treino .fala .t{filter:blur(7px);user-select:none;transition:filter .2s}
+.treino .fala.show .t{filter:none}
+.treino .fala{cursor:pointer}
+.treino .fala::after{content:"Toque para revelar";position:absolute;right:14px;top:12px;font-size:13px;font-weight:700;color:light-dark(#3B44C0,#AEB6FF)}
+.treino .fala.show::after{content:""}
+.atencao{background:var(--alert);color:var(--alertInk);border-radius:14px;padding:12px 16px;margin:14px 0;font-size:15px;font-weight:600;max-width:72ch}
+.atencao::before{content:"Atenção  ";font-weight:800}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.opt{border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.opt h4{margin:0 0 4px;font-size:16px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:14px;color:var(--soft)}
+td.n{white-space:nowrap;font-weight:700}
+details{border:1px solid var(--line);border-radius:16px;margin-bottom:10px;background:var(--card)}
+summary{cursor:pointer;padding:14px 18px;font-weight:800;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:10px;min-height:44px;align-items:center}
+summary::after{content:"+";font-size:22px;color:var(--falaBar)}
+details[open] summary::after{content:"–"}
+details .in{padding:0 18px 16px}
+.msg{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px}
+.msg h4{margin:0 0 8px;font-size:16px}
+.bubble{background:light-dark(#dcf8c6,#1f3b2a);color:light-dark(#173018,#e6f7e9);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:16px;max-width:60ch}
+.copy{margin-top:10px;min-height:40px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 16px;font-weight:700}
+.st{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 16px;align-items:start;margin:0}
+.st dt{font-weight:800}
+.st dt span{display:inline-block;padding:3px 12px;border-radius:999px;background:var(--fala)}
+.st dd{margin:0 0 10px;color:var(--soft)}
+footer{color:var(--soft);font-size:14px}
+@media(max-width:700px){.route{grid-template-columns:minmax(0,1fr);gap:14px}.route::before{left:28px;right:auto;top:10px;bottom:10px;width:4px;height:auto}.stop{display:grid;grid-template-columns:58px minmax(0,1fr);gap:14px;text-align:left;align-items:center}.stop .dot{margin:0}.opts{grid-template-columns:minmax(0,1fr)}.st{grid-template-columns:minmax(0,1fr)}.st dd{margin-bottom:14px}.bar{width:100px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero band"><div class="wrap">
+<div class="brand">Clube Fideliz · Rede de Águas Claras</div>
+<h1>Roteiro de ligação para as lojas fundadoras</h1>
+<p class="lead">Seu objetivo em cada ligação é falar com o dono e sair com uma conversa de 15 minutos agendada. Lojas menores podem fechar na própria ligação. Siga o percurso abaixo e estude parte por parte.</p>
+<div class="route" aria-label="Etapas da ligação">
+<a class="stop" href="#p21"><div class="dot">1</div><div><b>Abertura</b><span>quem atende</span></div></a>
+<a class="stop" href="#p22"><div class="dot">2</div><div><b>Atendente</b><span>nome e horário do dono</span></div></a>
+<a class="stop" href="#p23"><div class="dot">3</div><div><b>Apresentação</b><span>o Clube em 35 segundos</span></div></a>
+<a class="stop" href="#p24"><div class="dot">4</div><div><b>Perguntas</b><span>entender a loja</span></div></a>
+<a class="stop" href="#p25"><div class="dot">5</div><div><b>Convite</b><span>conversa de 15 minutos</span></div></a>
+<a class="stop end" href="#fechamento"><div class="dot">✓</div><div><b>Fechamento</b><span>Bronze e Prata</span></div></a>
+</div>
+<div class="goal">
+<div><strong>40</strong><small>ligações por dia</small></div>
+<div><strong>15</strong><small>conversas com o dono</small></div>
+<div><strong>4</strong><small>agendadas ou fechadas</small></div>
+<div><strong>19/12</strong><small>lançamento em Águas Claras</small></div>
+</div>
+</div></header>
+
+<nav aria-label="Seções"><div class="wrap">
+<a href="#antes">Antes de ligar</a><a href="#roteiro">Roteiro</a><a href="#fechamento">Fechamento</a><a href="#objecoes">Objeções</a><a href="#whatsapp">WhatsApp</a><a href="#crm">CRM e metas</a>
+</div></nav>
+
+<main>
+<div class="band" style="padding-bottom:0"><div class="wrap tools">
+<div class="legend"><span class="chip f">Fala: o que você diz</span><span class="chip o">Orientação: o que você faz</span><span class="chip a">Atenção: cuidado especial</span></div>
+<button class="toggle" id="treino" aria-pressed="false">Modo treino: esconder as falas</button>
+<div class="prog"><span id="ptxt">0 de 0 partes estudadas</span><div class="bar"><i id="pbar"></i></div></div>
+</div></div>
+
+<section class="band" id="antes"><div class="wrap">
+<h2>Antes de ligar</h2>
+<p class="intro">Evite explicar o clube inteiro por telefone, porque a conversa costuma terminar em "me manda por WhatsApp" e o contato esfria.</p>
+<div class="part" data-id="p11"><div class="ph"><div class="num">1.1</div><h3>Melhor horário para cada tipo de loja</h3></div>
+<div class="scroll"><table><thead><tr><th>Tipo de loja</th><th>Quando ligar</th><th>Quando evitar</th></tr></thead><tbody>
+<tr><td>Restaurante, lanchonete e pizzaria</td><td class="n">15h às 17h</td><td>11h às 14h e à noite</td></tr>
+<tr><td>Padaria, café e confeitaria</td><td class="n">9h30 às 11h · 14h às 16h</td><td>6h às 9h e fim da tarde</td></tr>
+<tr><td>Mercado, açougue e hortifrúti</td><td class="n">9h30 às 11h30 · 14h30 às 16h30</td><td>Sábados e fim do dia</td></tr>
+<tr><td>Salão, barbearia e estética</td><td class="n">9h às 10h30 · 13h30 às 15h</td><td>Sábados</td></tr>
+<tr><td>Pet shop, roupa, ótica e serviços</td><td class="n">10h às 12h · 14h às 17h</td><td>Horário de almoço</td></tr>
+</tbody></table></div></div>
+<div class="part" data-id="p12"><div class="ph"><div class="num">1.2</div><h3>O que ter em mãos antes de ligar</h3></div>
+<ul>
+<li>A ficha da empresa no CRM, com nome, segmento, nota no Google, endereço e Instagram.</li>
+<li>Um elogio sincero sobre a loja, como a boa avaliação ou algo que chamou a atenção no Instagram. Isso abre a conversa melhor do que qualquer frase pronta.</li>
+<li>O vídeo de 40 segundos e o link da apresentação, prontos para enviar pelo WhatsApp.</li>
+<li>A agenda com os horários disponíveis para a conversa de 15 minutos.</li>
+<li>A lista de vagas por categoria atualizada, para saber quantas ainda restam no segmento da loja.</li>
+</ul></div>
+</div></section>
+
+<section class="band" id="roteiro"><div class="wrap">
+<h2>Roteiro principal</h2>
+<p class="intro">A conversa tem cinco etapas e leva de 2 a 4 minutos. As falas servem de guia: você pode adaptá-las ao seu jeito de falar, desde que siga todas as etapas.</p>
+<div class="part" id="p21" data-id="p21"><div class="ph"><div class="num">1</div><h3>Abertura</h3></div>
+<div class="fala"><span class="t">"Bom dia! Meu nome é Ana e falo em nome do Clube Fideliz. Por gentileza, eu poderia falar com o responsável pela [nome da loja]?"</span></div></div>
+
+<div class="part" id="p22" data-id="p22"><div class="ph"><div class="num">2</div><h3>Quando quem atende não é o dono</h3></div>
+<p>Não apresente o clube para o atendente nem deixe recado genérico. Nesta etapa, o objetivo é descobrir o nome do responsável e o melhor horário para encontrá-lo.</p>
+<div class="fala"><span class="t">"O assunto é o lançamento de uma rede de lojas parceiras aqui em Águas Claras. Qual é o nome do responsável? E em que horário fica mais fácil falar com ele?"</span></div>
+<p>Se pedirem para enviar as informações por WhatsApp:</p>
+<div class="fala"><span class="t">"Envio, sim. Você poderia me passar o WhatsApp dele? Assim já explico diretamente."</span></div>
+<p>Registre no CRM o nome do dono e o horário indicado e volte a ligar nesse horário.</p></div>
+
+<div class="part" id="p23" data-id="p23"><div class="ph"><div class="num">3</div><h3>Apresentação ao dono</h3></div>
+<div class="fala"><span class="t">"Bom dia, seu [nome], tudo bem? Meu nome é Ana e falo em nome do Clube Fideliz, um clube de vantagens que já tem mais de 30 mil pessoas cadastradas no Distrito Federal. O Clube funciona como uma rede de lojas parceiras, em que o cliente acumula cashback em uma loja e pode usar o saldo em qualquer outra da rede. Na prática, quem compra na padaria ou no pet shop do bairro passa a ter um motivo para comprar também na sua loja. As lojas compartilham clientes entre si, e a rede inteira trabalha para atrair mais gente para cada negócio. O lançamento em Águas Claras será no dia 19 de dezembro, e estamos selecionando algumas lojas de cada categoria para participar como fundadoras. A [loja] nos chamou a atenção pela [ótima avaliação no Google / pelo movimento / pelo trabalho no Instagram]. O senhor teria dois minutos para conversarmos?"</span></div>
+<div class="atencao">Fale sempre em pessoas "cadastradas" no Distrito Federal, e nunca em clientes ativos ou em Águas Claras, onde a base ainda começa do zero. Se o dono interromper no meio, pule direto para "O senhor teria dois minutos?".</div>
+<p>Se ele estiver sem tempo, combine outro horário na mesma hora:</p>
+<div class="fala"><span class="t">"Sem problema. Posso ligar amanhã às 10h ou às 15h?"</span></div></div>
+
+<div class="part" id="p24" data-id="p24"><div class="ph"><div class="num">4</div><h3>Perguntas para entender a loja</h3></div>
+<p>Faça as duas perguntas e ouça com atenção. As respostas indicam qual pacote oferecer e qual argumento usar.</p>
+<div class="fala"><span class="t">"Hoje a loja tem alguma ação para fazer o cliente voltar, como cartão fidelidade, desconto ou grupo de WhatsApp?"</span></div>
+<div class="fala"><span class="t">"O que é mais importante para o senhor neste momento: atrair clientes novos ou fazer com que os clientes atuais voltem com mais frequência?"</span></div>
+<p>Se houver tempo, pergunte também qual sistema de caixa a loja utiliza. Quando há integração, o CPF do cliente entra automaticamente e a equipe do balcão não precisa lançar nada.</p></div>
+
+<div class="part" id="p25" data-id="p25"><div class="ph"><div class="num">5</div><h3>Benefício e convite</h3></div>
+<p>Use o argumento que corresponde à resposta do dono:</p>
+<div class="opts">
+<div class="opt"><h4>Se ele quer atrair clientes novos</h4><div class="fala"><span class="t">"O cliente que compra na padaria ou no pet shop da rede acumula saldo, e esse saldo só pode ser usado nas lojas parceiras. Assim, clientes de outras lojas passam a vir até a sua."</span></div></div>
+<div class="opt"><h4>Se ele quer que os clientes voltem</h4><div class="fala"><span class="t">"O cashback tem validade de 90 dias e é renovado a cada compra. Isso dá ao cliente um motivo para voltar, e o sistema ainda avisa quando o saldo está perto de vencer."</span></div></div>
+</div>
+<p>Em seguida, faça o convite. Para lojas maiores, ou quando o dono quiser entender melhor, proponha a conversa de 15 minutos:</p>
+<div class="fala"><span class="t">"O ideal é eu apresentar ao senhor, em 15 minutos, por vídeo ou pessoalmente, como o Clube funciona e como será o lançamento. Fica melhor amanhã pela manhã ou à tarde?"</span></div>
+<p>Ofereça sempre duas opções de horário, em vez de perguntar "quando fica bom para o senhor?". Se a loja for pequena e o dono se mostrar interessado, passe direto para o fechamento por telefone.</p></div>
+</div></section>
+
+<section class="band" id="fechamento"><div class="wrap">
+<h2>Fechamento por telefone</h2>
+<p class="intro">Lojas pequenas com dono interessado podem fechar durante a própria ligação, nos pacotes Bronze ou Prata.</p>
+<div class="part" data-id="p31"><div class="ph"><div class="num">3.1</div><h3>Qual pacote oferecer</h3></div>
+<div class="scroll"><table><thead><tr><th>Pacote</th><th>Ativação</th><th>Mensalidade</th><th>Indicado para</th></tr></thead><tbody>
+<tr><td><b>Bronze</b></td><td class="n">R$ 99,90</td><td class="n">R$ 99,90</td><td>Lojas que querem entrar na rede e oferecer voucher de aniversário e cortesia</td></tr>
+<tr><td><b>Prata</b></td><td class="n">R$ 199,90</td><td class="n">R$ 199,90</td><td>Lojas que precisam de desconto, Compre e Ganhe ou banner para atrair clientes, como restaurantes, salões e mercados de médio porte</td></tr>
+</tbody></table></div>
+<p>Os pacotes Platina, Ouro e Diamante, com ativação de R$ 349,90 a R$ 649,90, devem ser apresentados na conversa de 15 minutos, com o apoio da apresentação.</p></div>
+
+<div class="part" data-id="p32"><div class="ph"><div class="num">3.2</div><h3>Como apresentar a condição de fundador</h3></div>
+<div class="atencao">A condição de fundador é apresentada apenas na conversa individual. Ela não aparece em posts, panfletos, mensagens escritas ou qualquer material impresso.</div>
+<div class="fala"><span class="t">"Para as lojas que entrarem antes do lançamento, oferecemos uma condição de fundador. O senhor paga apenas a ativação, de R$ 99,90, e as três primeiras mensalidades ficam por nossa conta, o que representa uma economia de quase R$ 300. Essa condição vale somente até o dia 19 de dezembro. Depois do lançamento, a adesão volta a seguir a tabela normal."</span></div>
+<p>No Prata, troque os valores: a ativação é de R$ 199,90 e a economia é de quase R$ 600.</p>
+<div class="atencao">Ainda falta confirmar se os três meses contam a partir do fechamento ou do lançamento. Até lá, fale em "três primeiras mensalidades", sem indicar a data de início.</div></div>
+
+<div class="part" data-id="p33"><div class="ph"><div class="num">3.3</div><h3>Pergunta de fechamento</h3></div>
+<div class="fala"><span class="t">"O senhor gostaria de garantir a participação da [loja] como fundadora? Posso enviar o link agora mesmo e reservar a vaga na categoria de [categoria]."</span></div></div>
+
+<div class="part" data-id="p34"><div class="ph"><div class="num">3.4</div><h3>Depois do sim, ainda na ligação</h3></div>
+<ol>
+<li>Confirme o nome do responsável, o CNPJ e o WhatsApp para onde vai o link.</li>
+<li>Envie o link de pagamento da ativação com a ligação em andamento e peça que ele confirme o recebimento.</li>
+<li>Combine a data de instalação do kit, que inclui o QR no balcão e um treinamento de 15 minutos.</li>
+<li>Peça uma indicação: <span class="fala" style="display:block"><span class="t">"O senhor conhece algum vizinho de loja que teria o perfil do Clube?"</span></span></li>
+<li>Atualize o CRM antes da próxima ligação, com status "Fechada", pacote, valor da ativação e indicação recebida.</li>
+</ol>
+<p>Se ele pedir um tempo para pensar, marque o retorno com dia e hora ("Posso ligar na quinta às 10h?") e envie a mensagem de WhatsApp de pós-ligação.</p></div>
+</div></section>
+
+<section class="band" id="objecoes"><div class="wrap">
+<h2>Objeções</h2>
+<p class="intro">Para qualquer objeção, siga a mesma sequência: reconheça a preocupação do dono, responda em uma ou duas frases e retome o convite ou o fechamento. Evite entrar em discussão. Toque em cada objeção para abrir a resposta.</p>
+<div id="objs"></div>
+</div></section>
+
+<section class="band" id="whatsapp"><div class="wrap">
+<h2>Mensagens de WhatsApp</h2>
+<p class="intro">O WhatsApp complementa a ligação, mas não a substitui. Os valores da condição de fundador não vão por escrito, porque as mensagens podem ser encaminhadas e os lojistas se conhecem. Mencione apenas "a condição de fundador que conversamos".</p>
+<div id="msgs"></div>
+</div></section>
+
+<section class="band" id="crm"><div class="wrap">
+<h2>CRM e metas diárias</h2>
+<p class="intro">Registre cada ligação no CRM antes de fazer a próxima. Sem esse registro, os retornos se perdem e o placar deixa de refletir a realidade.</p>
+<div class="part" data-id="p61"><div class="ph"><div class="num">6.1</div><h3>Status de cada empresa</h3></div>
+<dl class="st">
+<dt><span>Não contatada</span></dt><dd>Ainda não houve ligação. Ligar no horário indicado para o segmento.</dd>
+<dt><span>Sem resposta</span></dt><dd>Ninguém atendeu (anote se foi a 1ª, 2ª ou 3ª tentativa). Na 2ª tentativa, envie a mensagem de WhatsApp. Depois da 3ª, só retome se houver resposta.</dd>
+<dt><span>Falar com o dono</span></dt><dd>Outra pessoa atendeu. Ligue no horário indicado, já sabendo o nome do dono.</dd>
+<dt><span>Conversa agendada</span></dt><dd>O dono aceitou a conversa de 15 minutos. Envie o lembrete pelo WhatsApp e faça a conversa no horário.</dd>
+<dt><span>Pensando</span></dt><dd>O dono pediu um tempo ou vai consultar o sócio. Faça o retorno no dia e horário combinados.</dd>
+<dt><span>Fechada</span></dt><dd>A ativação foi paga. Agende a instalação do kit e peça indicação.</dd>
+<dt><span>Sem interesse no momento</span></dt><dd>O dono recusou. Retome o contato em janeiro.</dd>
+</dl>
+<p>Em cada empresa, preencha também o nome do dono, o melhor horário para contato, o pacote de interesse, o sistema de caixa, a data do próximo passo e as indicações recebidas.</p></div>
+<div class="part" data-id="p62"><div class="ph"><div class="num">6.2</div><h3>Meta diária e placar</h3></div>
+<ul>
+<li>40 ligações, divididas em dois blocos (manhã e tarde), respeitando o horário de cada segmento</li>
+<li>Cerca de 15 conversas com o dono</li>
+<li>4 conversas de 15 minutos agendadas ou fechamentos por telefone</li>
+<li>Todos os retornos do dia feitos no horário combinado</li>
+</ul>
+<p>Ao fim do dia, envie ao Gustavo o placar com o número de ligações, de conversas com o dono, de conversas agendadas e de fechamentos (com o pacote de cada um), além das objeções mais frequentes. As objeções novas serão incluídas neste roteiro.</p></div>
+<footer>Clube Fideliz · Roteiro de ligação para o pré-lançamento de Águas Claras · versão de 25/11/2026</footer>
+</div></section>
+</main>
+
+<script>
+{
+const objs=[
+["Agora não tenho tempo.",'"Entendo, o fim de ano é corrido mesmo. Por isso a conversa leva só 15 minutos. Posso ligar amanhã às 10h ou às 15h?"',"",""],
+["Manda por WhatsApp que eu dou uma olhada.",'"Envio agora mesmo. É um vídeo de 40 segundos. Posso ligar amanhã pela manhã para tirar suas dúvidas? Às 10h fica bom?"',"","Envie o vídeo e ligue no horário combinado. Sem um retorno marcado, a conversa costuma parar no WhatsApp."],
+["Quanto custa?",'"O pacote de entrada tem ativação de R$ 99,90 e mensalidade de R$ 99,90, e para as lojas fundadoras as três primeiras mensalidades ficam por nossa conta. Antes de entrar nos detalhes, quero entender se o Clube atende à necessidade da sua loja. Posso fazer duas perguntas rápidas?"',"Se ele perguntar logo no início, responda com clareza.",""],
+["5% de cashback é muito.",'"Entendo a preocupação. O cashback só se torna custo quando o cliente troca o saldo por um prêmio na sua loja, e esse prêmio custa para o senhor, em média, metade do valor. Na prática, o custo fica perto de 2,5%, próximo da taxa da maquininha. E ele só existe quando o cliente volta e compra de novo."',"",""],
+["Mas meu cliente paga no Pix, e no Pix não tem taxa.",'"É verdade, no Pix não há taxa. O cashback funciona de outra forma, porque o custo só aparece quando o cliente volta para comprar. Ele está sempre ligado a uma nova venda."',"Neste caso, não insista na comparação com a maquininha, porque ela não se aplica.",""],
+["Já tenho cartão fidelidade ou programa próprio.",'"Ótimo, então o senhor já conhece o resultado desse tipo de ação. O cartão fidelidade ajuda a trazer de volta quem já é cliente da loja. O Clube, além disso, traz clientes das outras lojas da rede que ainda não conhecem a sua. As duas coisas podem funcionar juntas."',"",""],
+["Meus funcionários não têm tempo para cadastrar ninguém.",'"Eles não vão precisar. O próprio cliente registra a compra pelo QR do cupom fiscal com CPF. E, se o sistema de caixa da loja tiver integração, nem isso é necessário, porque o CPF entra automaticamente."',"",""],
+["Águas Claras ainda não tem clientes no Clube. Quem garante o movimento?",'"Todas as lojas da rede começam juntas no dia 19. Até lá, estamos formando a lista de espera dos moradores, com panfletagem semanal e divulgação pelas próprias lojas parceiras. Por isso as lojas fundadoras não pagam as primeiras mensalidades, o que dá tempo para a rede crescer antes de a cobrança começar."',"!Não prometa um número de clientes.",""],
+["Vou pensar / Preciso falar com meu sócio.",'"Claro, fique à vontade. Só lembro que a condição de fundador vale até o dia 19 e que as vagas na sua categoria são limitadas. Posso ligar na [dia] às [hora]? Se preferir, faço a apresentação de 15 minutos para o senhor e seu sócio juntos."',"","!Só mencione vagas limitadas se o limite por categoria estiver definido. Confirme esse limite com o Gustavo antes de usar o argumento."],
+["Não tenho interesse.",'"Tudo bem, agradeço a atenção. Posso entrar em contato depois do lançamento, em janeiro, para mostrar como a rede está funcionando?"',"",'Registre como "Sem interesse no momento" no CRM, com retorno previsto para janeiro.']
+];
+const note=t=>!t?"":t[0]==="!"?`<div class="atencao">${t.slice(1)}</div>`:`<p>${t}</p>`;
+document.getElementById("objs").innerHTML=objs.map((o,i)=>`<details class="part" style="padding:0" data-id="o${i}"><summary>4.${i+1} · "${o[0]}"</summary><div class="in">${note(o[2])}<div class="fala"><span class="t">${o[1]}</span></div>${note(o[3])}<label class="done"><input type="checkbox"> Estudei esta resposta</label></div></details>`).join("");
+const msgs=[
+["5.1 Quando o dono não atende (após duas tentativas)","Olá, [nome], tudo bem? Aqui é a Ana, do Clube Fideliz. Tentei falar com o senhor sobre a rede de lojas parceiras que será lançada em Águas Claras no dia 19 de dezembro. A [loja] está entre as lojas que gostaríamos de convidar como fundadoras. Qual seria o melhor horário para uma ligação rápida?"],
+["5.2 Depois da ligação, com o material","[Nome], obrigada pela conversa! Segue o vídeo de 40 segundos que mostra como a rede funciona: [link]. Como combinamos, volto a ligar na [dia] às [hora]. Se surgir qualquer dúvida antes disso, é só me chamar por aqui."],
+["5.3 Lembrete do retorno (na véspera ou no dia)","Olá, [nome]! Passando para confirmar nossa conversa de hoje, às [hora], sobre o Clube Fideliz. O horário continua bom para o senhor?"],
+["5.4 Para quem pediu um tempo para pensar (dois a três dias depois)","Olá, [nome], tudo bem? Nesta semana, novas lojas confirmaram participação na rede de Águas Claras, entre elas [loja fundadora, se autorizado]. Gostaria de saber se ficou alguma dúvida sobre a condição de fundador que conversamos. Ela vale até o dia 19 de dezembro."],
+["5.5 Depois do fechamento","[Nome], seja bem-vindo ao Clube Fideliz! A [loja] agora faz parte das lojas fundadoras da rede de Águas Claras. Os próximos passos são a confirmação do pagamento da ativação pelo link, a instalação do QR no balcão com um treinamento rápido em [dia e hora] e o lançamento para o público no dia 19 de dezembro. Qualquer dúvida, estou à disposição por aqui."]
+];
+document.getElementById("msgs").innerHTML=msgs.map((m,i)=>`<div class="msg"><h4>${m[0]}</h4><div class="bubble" id="m${i}">${m[1]}</div><button class="copy" data-m="m${i}">Copiar mensagem</button></div>`).join("");
+document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",async()=>{const t=document.getElementById(b.dataset.m).textContent;try{await navigator.clipboard.writeText(t);b.textContent="Copiada";}catch(e){b.textContent="Selecione e copie o texto";}setTimeout(()=>b.textContent="Copiar mensagem",2000);}));
+document.querySelectorAll(".part:not(details)").forEach(p=>{const h=p.querySelector(".ph");if(h){const l=document.createElement("label");l.className="done";l.innerHTML='<input type="checkbox"> Estudei';h.appendChild(l);}});
+const KEY="fideliz-guia-estudo";let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const parts=[...document.querySelectorAll("[data-id]")];
+const upd=()=>{const n=parts.filter(p=>p.classList.contains("ok")).length;document.getElementById("ptxt").textContent=`${n} de ${parts.length} partes estudadas`;document.getElementById("pbar").style.width=(n/parts.length*100)+"%";};
+parts.forEach(p=>{const c=p.querySelector(".done input");if(!c)return;if(saved[p.dataset.id]){c.checked=true;p.classList.add("ok")}c.addEventListener("change",()=>{p.classList.toggle("ok",c.checked);saved[p.dataset.id]=c.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}upd();});});
+upd();
+const tb=document.getElementById("treino");
+tb.addEventListener("click",()=>{const on=tb.getAttribute("aria-pressed")!=="true";tb.setAttribute("aria-pressed",on);document.body.classList.toggle("treino",on);tb.textContent=on?"Modo treino ligado: toque nas falas para revelar":"Modo treino: esconder as falas";document.querySelectorAll(".fala.show").forEach(f=>f.classList.remove("show"));});
+document.addEventListener("click",e=>{const f=e.target.closest(".fala");if(f&&document.body.classList.contains("treino"))f.classList.toggle("show");});
+}
+</script>
+</body>
+</html>
