@@ -183,7 +183,7 @@ footer{color:var(--soft);font-size:14px}
 <tr><td class="n">Três dias depois</td><td>Ligar rapidamente para tirar dúvidas</td></tr>
 <tr><td class="n">Sete dias depois</td><td>Lembrar que o código vale até 19 de dezembro (mensagem 5.3)</td></tr>
 <tr><td class="n">De 15 a 18/12</td><td>Enviar o último aviso antes do lançamento (mensagem 5.4)</td></tr>
-<tr><td class="n">Quando contratar</td><td>Dar as boas-vindas e combinar a instalação (mensagem 5.6)</td></tr>
+<tr><td class="n">Quando contratar</td><td>Dar as boas-vindas e orientar sobre os materiais do aplicativo (mensagem 5.6)</td></tr>
 </tbody></table></div></div>
 <div class="part" data-id="p32"><div class="ph"><div class="num">3.2</div><h3>Ligação de três dias depois</h3></div>
 <div class="fala"><span class="t">"Bom dia, seu [nome], tudo bem? Aqui é a Ana, do Clube Fideliz. Estou ligando para saber se o senhor conseguiu ver a página que enviei e se ficou alguma dúvida sobre os planos."</span></div></div>
@@ -192,7 +192,7 @@ footer{color:var(--soft);font-size:14px}
 <div class="part" data-id="p34"><div class="ph"><div class="num">3.4</div><h3>Quando ele contratar</h3></div>
 <ol>
 <li>Confirme o pagamento da ativação.</li>
-<li>Combine a data de instalação do kit, que inclui o QR no balcão e um treinamento de 15 minutos.</li>
+<li>Oriente o lojista a baixar os materiais na seção Materiais do aplicativo (QR de balcão e sinalização) e a colocá-los na loja antes de 19 de dezembro. Peça que ele envie uma foto do material instalado.</li>
 <li>Peça uma indicação: <span class="fala" style="display:block"><span class="t">"O senhor conhece algum vizinho de loja que teria o perfil do Clube?"</span></span></li>
 <li>Atualize o CRM com status "Fechada", plano contratado e indicação recebida.</li>
 </ol>
@@ -222,7 +222,7 @@ footer{color:var(--soft);font-size:14px}
 <dt><span>Link enviado</span></dt><dd>O dono recebeu o link e o código de fundador. Siga a cadência de acompanhamento.</dd>
 <dt><span>Em acompanhamento</span></dt><dd>A cadência está em andamento (anote a etapa). Faça o próximo contato na data prevista.</dd>
 <dt><span>Quer conversar</span></dt><dd>O dono pediu para falar antes de contratar. Retorne no mesmo dia, por ligação ou vídeo.</dd>
-<dt><span>Fechada</span></dt><dd>O dono contratou e pagou a ativação. Agende a instalação do kit e peça indicação.</dd>
+<dt><span>Fechada</span></dt><dd>O dono contratou e pagou a ativação. Oriente sobre os materiais do aplicativo, peça a foto da instalação e peça indicação.</dd>
 <dt><span>Sem interesse no momento</span></dt><dd>O dono recusou. Retome o contato em janeiro.</dd>
 </dl>
 <p>Em cada empresa, preencha também o nome do dono, o WhatsApp, o melhor horário para contato, a data do envio do link, a etapa da cadência, o plano de interesse e as indicações recebidas.</p></div>
@@ -255,7 +255,7 @@ const msgs=[
 ["5.3 Sete dias depois","Olá, [nome]! Passando para lembrar que o seu código de fundador vale até 19 de dezembro, quando o Clube será lançado em Águas Claras. Nesta semana, novas lojas confirmaram participação na rede, entre elas [loja fundadora, se autorizado]. Posso ajudar em alguma dúvida?"],
 ["5.4 Último aviso (de 15 a 18 de dezembro)","Olá, [nome]! O lançamento do Clube Fideliz em Águas Claras é no próximo sábado, dia 19, e o código de fundador vale só até lá. Se quiser garantir a participação da [loja] como fundadora, o link é este: [link]. Estou à disposição."],
 ["5.5 Quando o dono não atende (após duas tentativas)","Olá, [nome], tudo bem? Aqui é a Ana, do Clube Fideliz. Tentei falar com o senhor sobre a rede de lojas parceiras que será lançada em Águas Claras no dia 19 de dezembro. A [loja] está entre as lojas que gostaríamos de convidar como fundadoras. Qual seria o melhor horário para uma ligação rápida?"],
-["5.6 Depois da contratação","[Nome], seja bem-vindo ao Clube Fideliz! A [loja] agora faz parte das lojas fundadoras da rede de Águas Claras. Os próximos passos são a instalação do QR no balcão, com um treinamento rápido em [dia e hora], e o lançamento para o público no dia 19 de dezembro. Qualquer dúvida, estou à disposição por aqui."]
+["5.6 Depois da contratação","[Nome], seja bem-vindo ao Clube Fideliz! A [loja] agora faz parte das lojas fundadoras da rede de Águas Claras. O próximo passo é baixar o QR e o material de balcão na seção Materiais do aplicativo e colocá-los na loja antes do lançamento para o público, no dia 19 de dezembro. Quando estiver instalado, me mande uma foto por aqui. Qualquer dúvida, estou à disposição por aqui."]
 ];
 document.getElementById("msgs").innerHTML=msgs.map((m,i)=>`<div class="msg"><h4>${m[0]}</h4><div class="bubble" id="m${i}">${m[1]}</div><button class="copy" data-m="m${i}">Copiar mensagem</button></div>`).join("");
 document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",async()=>{const t=document.getElementById(b.dataset.m).textContent;try{await navigator.clipboard.writeText(t);b.textContent="Copiada";}catch(e){b.textContent="Selecione e copie o texto";}setTimeout(()=>b.textContent="Copiar mensagem",2000);}));
