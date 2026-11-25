@@ -19,7 +19,7 @@ h1{font-size:clamp(30px,4.2vw,46px);font-weight:900;letter-spacing:-.5px;line-he
 main{max-width:1240px;margin:0 auto;padding:28px 24px 16px}
 .tier{display:inline-flex;align-items:center;gap:8px;font-weight:900}
 .tier i,.tab i{width:14px;height:14px;border-radius:50%;display:inline-block;flex:none}
-.pr{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 8px;margin-top:8px;text-align:center}
+.pr{display:block;background:rgba(255,253,249,.85);border:1px solid var(--line);border-radius:12px;padding:6px 8px;margin-top:8px;text-align:center}
 .pr small{display:block;font-size:13px;font-weight:700;color:var(--mute)}
 .pr b{display:block;font-size:21px;font-weight:900;white-space:nowrap}
 .pr em{font-style:normal;font-size:13px;font-weight:700;color:var(--mute)}
@@ -36,7 +36,7 @@ tbody th{text-align:left;font-weight:700;padding-left:24px}
 tbody td{text-align:center;font-weight:800;white-space:nowrap;border-left:1px solid var(--line2)}
 tbody td.all{background:var(--tint)}
 tr.sec th{background:var(--chip);color:var(--acc);font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:9px 24px}
-tbody tr:not(.sec):hover th,tbody tr:not(.sec):hover td:not(.all){background:#FBF7EF}
+tbody tr:not(.sec):hover th{background:#FBF7EF}
 /* celular */
 .mob{display:none}
 .mob input{position:absolute;opacity:0;pointer-events:none}
@@ -56,10 +56,14 @@ tbody tr:not(.sec):hover th,tbody tr:not(.sec):hover td:not(.all){background:#FB
 .row .k{font-weight:700;font-size:16px;flex:1}
 .row .val{font-weight:900;font-size:16px;text-align:right;white-space:nowrap}
 .row .val .all{font-size:14px}
-#r-bronze:checked~.tabs .t-bronze{background:#172259;color:#FDF8F1;border-color:#172259}#r-bronze:checked~.cards .c-bronze{display:block}
-#r-prata:checked~.tabs .t-prata{background:#172259;color:#FDF8F1;border-color:#172259}#r-prata:checked~.cards .c-prata{display:block}
-#r-platina:checked~.tabs .t-platina{background:#172259;color:#FDF8F1;border-color:#172259}#r-platina:checked~.cards .c-platina{display:block}
-#r-ouro:checked~.tabs .t-ouro{background:#172259;color:#FDF8F1;border-color:#172259}#r-ouro:checked~.cards .c-ouro{display:block}
+thead th:nth-child(2){background:#EEDCCD;box-shadow:inset 0 6px 0 #B07B52}tbody tr:not(.sec) td:nth-child(2):not(.all){background:#F8EFE7}.c-bronze .box{background:#F8EFE7;border-color:#EEDCCD}.c-bronze .chead{box-shadow:inset 0 8px 0 #B07B52}
+thead th:nth-child(3){background:#E1E5EC;box-shadow:inset 0 6px 0 #9AA3B5}tbody tr:not(.sec) td:nth-child(3):not(.all){background:#F1F3F6}.c-prata .box{background:#F1F3F6;border-color:#E1E5EC}.c-prata .chead{box-shadow:inset 0 8px 0 #9AA3B5}
+thead th:nth-child(4){background:#D6E6EF;box-shadow:inset 0 6px 0 #7FA3B9}tbody tr:not(.sec) td:nth-child(4):not(.all){background:#EBF3F8}.c-platina .box{background:#EBF3F8;border-color:#D6E6EF}.c-platina .chead{box-shadow:inset 0 8px 0 #7FA3B9}
+thead th:nth-child(5){background:#F4E7B8;box-shadow:inset 0 6px 0 #D4AF37}tbody tr:not(.sec) td:nth-child(5):not(.all){background:#FBF5E1}.c-ouro .box{background:#FBF5E1;border-color:#F4E7B8}.c-ouro .chead{box-shadow:inset 0 8px 0 #D4AF37}
+#r-bronze:checked~.tabs .t-bronze{background:#EEDCCD;color:#172259;border:2px solid #B07B52}#r-bronze:checked~.cards .c-bronze{display:block}
+#r-prata:checked~.tabs .t-prata{background:#E1E5EC;color:#172259;border:2px solid #9AA3B5}#r-prata:checked~.cards .c-prata{display:block}
+#r-platina:checked~.tabs .t-platina{background:#D6E6EF;color:#172259;border:2px solid #7FA3B9}#r-platina:checked~.cards .c-platina{display:block}
+#r-ouro:checked~.tabs .t-ouro{background:#F4E7B8;color:#172259;border:2px solid #D4AF37}#r-ouro:checked~.cards .c-ouro{display:block}
 footer{max-width:1240px;margin:0 auto;padding:6px 24px 32px;color:var(--mute);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:860px){.desk{display:none}.mob{display:block}main{padding:8px 16px 8px}.hin{padding:22px 16px}.brand img{width:160px}footer{padding:8px 16px 28px}}
 </style>
